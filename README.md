@@ -18,7 +18,9 @@ pipeline_tag: text-generation
 
 # 🛡️ CIE Auditor - Enterprise GRC Compliance AI
 
-A custom fine-tuned and DPO-aligned version of **Mistral 7B Instruct**, trained to function as a **Senior IT Compliance Auditor**. Feed it a security incident or corporate scenario, and it produces a structured, board-ready **9-Part Audit Report** in seconds.
+![CIE Auditor Interface](screenshot.png)
+
+A custom fine-tuned version of **Mistral 7B Instruct**, trained to function as a **Senior IT Compliance Auditor**. Feed it a security incident or corporate policy, and it produces a highly structured, board-ready compliance audit report mapping vulnerabilities to exact regulatory frameworks in seconds.
 
 > Tested against real-world breaches including Capital One (2019), Equifax (2017), and Uber (2022) - correctly identifying root causes, violated controls, and remediation steps.
 
