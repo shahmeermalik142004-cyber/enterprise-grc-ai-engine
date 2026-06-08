@@ -1,0 +1,10 @@
+PyMuPDF
+python-docx
+requests
+fastapi
+uvicorn
+gradio
+
+python-multipart
+
+pypdf

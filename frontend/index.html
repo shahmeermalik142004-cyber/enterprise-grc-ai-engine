@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise GRC Auditor | Powered by Mistral 7B</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <h2>GRC AI Engine</h2>
+            </div>
+            
+            <div class="sidebar-info">
+                <h3>System Status</h3>
+                <div class="status-item">
+                    <div class="pulse-dot green"></div>
+                    <span>API Connected</span>
+                </div>
+                <div class="status-item">
+                    <div class="pulse-dot blue"></div>
+                    <span>Mistral 7B Active</span>
+                </div>
+                
+                <div class="model-specs">
+                    <h4>Architecture</h4>
+                    <p>Base: Mistral-7B-Instruct-v0.2</p>
+                    <p>Adapters: LoRA (r=8) + DPO</p>
+                    <p>Quantization: 4-bit (NF4)</p>
+                    <p>Params: 7 Billion</p>
+                </div>
+            </div>
+            
+            <div class="author-tag">
+                <p>Built for LinkedIn Showcase</p>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-container">
+            <header class="chat-header">
+                <div class="header-content">
+                    <h1>Compliance Auditor</h1>
+                    <p>Paste a contract provision below to scan for compliance gaps.</p>
+                </div>
+            </header>
+
+            <div class="chat-history" id="chat-history">
+                <div class="message ai-message initial-message">
+                    <div class="avatar ai-avatar">AI</div>
+                    <div class="message-bubble">
+                        <p>Welcome to the Enterprise GRC AI Engine. I am your specialized Compliance Auditor powered by a custom fine-tuned and DPO-aligned Mistral 7B model.</p>
+                        <p>Paste any contract clause or legal provision, and I will analyze it for regulatory risks and compliance gaps.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-container">
+                <form id="chat-form">
+                    <div class="upload-zone" id="upload-zone">
+                        <input type="file" id="file-input" accept=".pdf,.doc,.docx,.txt" hidden>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                        <span id="upload-text">Upload a policy document (PDF, DOCX, TXT)</span>
+                    </div>
+                    <div class="input-wrapper">
+                        <textarea 
+                            id="user-input" 
+                            placeholder="Paste a contract provision here..." 
+                            rows="1"
+                        ></textarea>
+                        <button type="submit" id="send-btn" disabled>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+                <div class="footer-text">AI may produce inaccurate information about laws or regulations. Always verify with human counsel.</div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
