@@ -16,11 +16,11 @@ language:
 pipeline_tag: text-generation
 ---
 
-# 🛡️ CIE Auditor — Enterprise GRC Compliance AI
+# 🛡️ CIE Auditor - Enterprise GRC Compliance AI
 
 A custom fine-tuned and DPO-aligned version of **Mistral 7B Instruct**, trained to function as a **Senior IT Compliance Auditor**. Feed it a security incident or corporate scenario, and it produces a structured, board-ready **9-Part Audit Report** in seconds.
 
-> Tested against real-world breaches including Capital One (2019), Equifax (2017), and Uber (2022) — correctly identifying root causes, violated controls, and remediation steps.
+> Tested against real-world breaches including Capital One (2019), Equifax (2017), and Uber (2022) - correctly identifying root causes, violated controls, and remediation steps.
 
 ---
 
@@ -142,7 +142,7 @@ This model is **not** a substitute for certified compliance professionals (CISA,
 
 ## 📄 License
 
-Apache 2.0 — Free to use, modify, and distribute with attribution.
+Apache 2.0 - Free to use, modify, and distribute with attribution.
 
 ---
 

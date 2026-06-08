@@ -8,9 +8,9 @@ Run after real_data_collector.py:
   python real_data_to_cie.py
 
 Output:
-  data/cie_real_sft.jsonl   — SFT training examples
-  data/cie_real_dpo.jsonl   — DPO preference pairs
-  data/stats.json           — dataset statistics
+  data/cie_real_sft.jsonl   - SFT training examples
+  data/cie_real_dpo.jsonl   - DPO preference pairs
+  data/stats.json           - dataset statistics
 """
 
 import json, os, random, re
@@ -95,8 +95,8 @@ def convert_gdpr(cases: list) -> tuple:
         "Art. 17": "GDPR Art.17 (Right to Erasure)",
         "Art. 22": "GDPR Art.22 (Automated Decision Making)",
         "Art. 32": "GDPR Art.32 (Security of Processing)",
-        "Art. 33": "GDPR Art.33 (Breach Notification — 72hrs to DPA)",
-        "Art. 34": "GDPR Art.34 (Breach Notification — to Data Subjects)",
+        "Art. 33": "GDPR Art.33 (Breach Notification - 72hrs to DPA)",
+        "Art. 34": "GDPR Art.34 (Breach Notification - to Data Subjects)",
         "Art. 35": "GDPR Art.35 (DPIA)",
         "Art. 44": "GDPR Art.44 (International Transfers)",
         "Art. 46": "GDPR Art.46 (Transfers via SCCs)",
@@ -151,7 +151,7 @@ def convert_gdpr(cases: list) -> tuple:
             remed_text = f"1. {remed_raw}"
 
         scenario_text = (
-            f"[REAL ENFORCEMENT CASE — {date or 'Date not disclosed'}] "
+            f"[REAL ENFORCEMENT CASE - {date or 'Date not disclosed'}] "
             f"{entity} ({sector}, {country}): {summary}"
         )
 
@@ -203,7 +203,7 @@ Finding: {finding}
 {"Immediate regulatory engagement required. Board-level escalation mandatory." if finding == "Critical" else "Corrective action plan required with defined timelines and ownership."}
 
 ## Confidence Score
-95/100 — Based on published regulatory enforcement decision."""
+95/100 - Based on published regulatory enforcement decision."""
 
         prompt = build_prompt(scenario_text, response)
         sft.append({"text": prompt, "framework": "GDPR", "verdict": verdict, "source": "real_enforcement"})
@@ -260,7 +260,7 @@ def convert_hipaa(cases: list) -> tuple:
 {det}. HHS Office for Civil Rights enforcement action against {entity} for violations of the HIPAA {rule}. {penalty_str} resolution agreement. {phi_str}.
 
 ## Applicable Frameworks & Controls
-Primary regulation: Health Insurance Portability and Accountability Act (HIPAA) — {rule}
+Primary regulation: Health Insurance Portability and Accountability Act (HIPAA) - {rule}
 Key provisions:
 - HIPAA Security Rule §164.308 (Administrative Safeguards)
 - HIPAA Security Rule §164.310 (Physical Safeguards)
@@ -309,7 +309,7 @@ Finding: {finding}
 {"Immediate corrective action required. Designate HIPAA Security Officer and implement Corrective Action Plan." if finding in ["Critical", "Major"] else "Monitor implementation of current safeguards and document compliance."}
 
 ## Confidence Score
-96/100 — Based on published HHS OCR enforcement action."""
+96/100 - Based on published HHS OCR enforcement action."""
 
         prompt = build_prompt(scenario_text, response)
         sft.append({"text": prompt, "framework": "HIPAA", "verdict": det, "source": "real_enforcement"})
@@ -352,7 +352,7 @@ def convert_nist(cases: list) -> tuple:
             impact     = "Critical" if risk_score > 85 else "High" if risk_score > 65 else "Medium"
 
         scenario_text = (
-            f"[NIST CSF AUDIT — {audit_src}] {entity}. "
+            f"[NIST CSF AUDIT - {audit_src}] {entity}. "
             f"Function: {function}. Category: {category}. Control: {sub_id}. "
             f"Finding: {summary}"
         )
@@ -377,7 +377,7 @@ NIST CSF provides a voluntary framework but is referenced as a baseline by multi
 
 ## Evidence Found
 - Audit source: {audit_src}
-- Assessment scope: {function} — {category}
+- Assessment scope: {function} - {category}
 - Control evaluated: {sub_id}
 - Finding: {finding_type}
 
@@ -408,7 +408,7 @@ Finding: {finding}
 {"Immediate remediation required. Include in risk register with executive visibility." if finding in ["Critical", "Major"] else "Schedule remediation in next planning cycle. Track to closure."}
 
 ## Confidence Score
-88/100 — Based on formal audit assessment against published NIST CSF 2.0 framework."""
+88/100 - Based on formal audit assessment against published NIST CSF 2.0 framework."""
 
         prompt = build_prompt(scenario_text, response)
         sft.append({"text": prompt, "framework": "NIST CSF", "verdict": finding_type, "source": "real_audit"})
@@ -444,7 +444,7 @@ def convert_pci(cases: list) -> tuple:
         breach_str  = f"{breach_size:,} cards compromised" if breach_size > 0 else "no confirmed card compromise"
         fine_str    = f"${fine_usd:,} fine/settlement" if fine_usd > 0 else "card brand fines not publicly disclosed"
         reqs_str    = "\n".join(f"- {r}" for r in reqs) if reqs else "- Multiple PCI DSS requirements"
-        vector_str  = f"Attack vector: {vector}" if vector and vector != "N/A — proactive assessment" else ""
+        vector_str  = f"Attack vector: {vector}" if vector and vector != "N/A - proactive assessment" else ""
 
         if det == "COMPLIANT":
             likelihood, impact, risk_score = "Low", "Low", random.randint(3, 10)
@@ -509,10 +509,10 @@ Risk Category: {"Security" if det != "COMPLIANT" else "Operational"}
 
 ## Audit Impact
 Finding: {finding}
-{"Critical finding — immediate remediation required. Engage QSA for validation. Notify acquiring bank." if finding == "Critical" else "Corrective action required before next QSA assessment."}
+{"Critical finding - immediate remediation required. Engage QSA for validation. Notify acquiring bank." if finding == "Critical" else "Corrective action required before next QSA assessment."}
 
 ## Confidence Score
-{"97" if breach_size > 0 else "88"}/100 — Based on {"publicly documented breach investigation" if breach_size > 0 else "QSA assessment findings"}."""
+{"97" if breach_size > 0 else "88"}/100 - Based on {"publicly documented breach investigation" if breach_size > 0 else "QSA assessment findings"}."""
 
         prompt = build_prompt(scenario_text, response)
         sft.append({"text": prompt, "framework": "PCI DSS", "verdict": det, "source": "real_breach"})
@@ -605,7 +605,7 @@ Finding: {finding}
 {"Major/Critical nonconformity under ISO 27001. Certification body must be notified. Corrective action required within 90 days or certificate suspended." if finding in ["Critical", "Major"] else "Minor nonconformity. Corrective action required at next surveillance audit."}
 
 ## Confidence Score
-{"94" if det != "COMPLIANT" else "91"}/100 — Based on {"documented incident investigation" if det != "COMPLIANT" else "formal certification audit"}."""
+{"94" if det != "COMPLIANT" else "91"}/100 - Based on {"documented incident investigation" if det != "COMPLIANT" else "formal certification audit"}."""
 
         prompt = build_prompt(scenario_text, response)
         sft.append({"text": prompt, "framework": "ISO 27001", "verdict": det, "source": "real_incident"})
@@ -677,7 +677,7 @@ if __name__ == "__main__":
     for filename, label, converter in converters:
         path = Path(RAW_DIR) / filename
         if not path.exists():
-            print(f"  [SKIP] {filename} not found — run real_data_collector.py first")
+            print(f"  [SKIP] {filename} not found - run real_data_collector.py first")
             continue
         with open(path, encoding="utf-8") as f:
             raw = json.load(f)

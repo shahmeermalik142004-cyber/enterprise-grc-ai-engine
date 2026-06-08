@@ -65,7 +65,7 @@ def extract_text_from_docx(file_bytes: bytes) -> str:
 # FRAMEWORK CHEAT SHEET (injected into every system prompt)
 # ============================================================
 FRAMEWORK_CONTEXT = """
-COMPLIANCE FRAMEWORK REFERENCE — always cite specific control IDs in your findings:
+COMPLIANCE FRAMEWORK REFERENCE - always cite specific control IDs in your findings:
 
 ISO 27001:
   A.5.17 - Authentication information management

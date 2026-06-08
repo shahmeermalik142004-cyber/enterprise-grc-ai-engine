@@ -2,11 +2,11 @@
 CIE Real Data Collector
 ========================
 Fetches real compliance enforcement cases from 5 public sources:
-  1. GDPR  — GDPR Enforcement Tracker (enforcementtracker.com)
-  2. HIPAA — HHS OCR Breach Portal & Enforcement Actions
-  3. NIST  — NIST CSF Controls + GAO audit reference cases
-  4. PCI   — PCI DSS public breach case summaries
-  5. ISO   — ICO (UK) enforcement decisions
+  1. GDPR  - GDPR Enforcement Tracker (enforcementtracker.com)
+  2. HIPAA - HHS OCR Breach Portal & Enforcement Actions
+  3. NIST  - NIST CSF Controls + GAO audit reference cases
+  4. PCI   - PCI DSS public breach case summaries
+  5. ISO   - ICO (UK) enforcement decisions
 
 Run:  python real_data_collector.py
 Output: data/raw/*.json files (one per framework)
@@ -39,7 +39,7 @@ def get(url, timeout=20):
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 1. GDPR — GDPR Enforcement Tracker
+# 1. GDPR - GDPR Enforcement Tracker
 # ─────────────────────────────────────────────────────────────────────────────
 def collect_gdpr():
     print("\n[1/5] Collecting GDPR enforcement data...")
@@ -210,7 +210,7 @@ def collect_gdpr():
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 2. HIPAA — HHS OCR Enforcement Actions
+# 2. HIPAA - HHS OCR Enforcement Actions
 # ─────────────────────────────────────────────────────────────────────────────
 def collect_hipaa():
     print("\n[2/5] Collecting HIPAA enforcement data...")
@@ -364,7 +364,7 @@ def collect_hipaa():
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 3. NIST CSF — Controls + GAO Audit Reference Cases
+# 3. NIST CSF - Controls + GAO Audit Reference Cases
 # ─────────────────────────────────────────────────────────────────────────────
 def collect_nist():
     print("\n[3/5] Collecting NIST CSF data...")
@@ -508,7 +508,7 @@ def collect_nist():
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 4. PCI DSS — Public Breach Cases & QSA Findings
+# 4. PCI DSS - Public Breach Cases & QSA Findings
 # ─────────────────────────────────────────────────────────────────────────────
 def collect_pci():
     print("\n[4/5] Collecting PCI DSS data...")
@@ -522,7 +522,7 @@ def collect_pci():
             "fine_usd": 18500000,
             "requirements_violated": ["Req. 1.3 (Firewall)", "Req. 6.2 (Patching)", "Req. 10.8 (Log review)", "Req. 12.8 (Vendor management)"],
             "attack_vector": "Third-party HVAC vendor compromise -> lateral movement to POS",
-            "summary": "Attackers compromised Target's HVAC vendor (Fazio Mechanical) credentials via phishing. Using the vendor's network access, they pivoted to Target's payment network — which was not properly segmented from vendor access. Malware installed on 1,800 POS terminals captured 40M card numbers. Target had PCI DSS certification but failed to implement network segmentation and did not monitor vendor access.",
+            "summary": "Attackers compromised Target's HVAC vendor (Fazio Mechanical) credentials via phishing. Using the vendor's network access, they pivoted to Target's payment network - which was not properly segmented from vendor access. Malware installed on 1,800 POS terminals captured 40M card numbers. Target had PCI DSS certification but failed to implement network segmentation and did not monitor vendor access.",
             "remediation": ["Implement network segmentation isolating CDE from vendor access", "Require MFA for all vendor remote access", "Deploy real-time POS integrity monitoring", "Review and restrict third-party access rights"],
             "determination": "NON-COMPLIANT",
             "finding": "Critical",
@@ -553,7 +553,7 @@ def collect_pci():
             "requirements_violated": ["Req. 3 (Stored data protection)", "Req. 10 (Audit logs)", "Req. 12.8 (Third-party management)", "Req. 11.2 (Vulnerability scanning)"],
             "attack_vector": "Legacy system from Starwood acquisition had undetected compromise dating back to 2014",
             "summary": "When Marriott acquired Starwood Hotels in 2016, the Starwood reservation system had already been compromised. Marriott failed to conduct adequate security due diligence during the acquisition, inheriting a 4-year-old undetected breach. Approximately 500M guest records exposed including 8.6M encrypted card numbers (some decryption keys potentially compromised). Breach not discovered until 2018.",
-            "remediation": ["Conduct full security assessment before completing acquisitions", "Implement continuous network monitoring to detect anomalous activity", "Audit all systems inherited through M&A", "Implement data minimisation — purge unnecessary historical payment data"],
+            "remediation": ["Conduct full security assessment before completing acquisitions", "Implement continuous network monitoring to detect anomalous activity", "Audit all systems inherited through M&A", "Implement data minimisation - purge unnecessary historical payment data"],
             "determination": "NON-COMPLIANT",
             "finding": "Critical",
             "date": "2018-11-30",
@@ -611,7 +611,7 @@ def collect_pci():
             "breach_size": 0,
             "fine_usd": 0,
             "requirements_violated": [],
-            "attack_vector": "N/A — proactive assessment",
+            "attack_vector": "N/A - proactive assessment",
             "summary": "QSA assessment found the bank's cardholder data environment fully compliant with PCI DSS v4.0. Network segmentation verified by penetration test. All PAN encrypted at rest (AES-256) and in transit (TLS 1.3). Quarterly internal and annual external vulnerability scans completed. Security awareness training 100% completed. Audit logs retained 12 months with 3 months online.",
             "remediation": ["Maintain current controls", "Consider implementing P2PE for branch terminals", "Review PCI DSS v4.1 changes when published"],
             "determination": "COMPLIANT",
@@ -629,7 +629,7 @@ def collect_pci():
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 5. ISO 27001 — ICO Enforcement Decisions
+# 5. ISO 27001 - ICO Enforcement Decisions
 # ─────────────────────────────────────────────────────────────────────────────
 def collect_iso27001():
     print("\n[5/5] Collecting ISO 27001 data...")
